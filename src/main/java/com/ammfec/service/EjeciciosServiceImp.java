@@ -19,35 +19,54 @@ public class EjeciciosServiceImp implements EjeciciosService {
 
 	@Override
 	public List<String> matriz(String[][] entrada) {
-		   int[][] matriz = {
-		            {1, 2, 3, 4, 5, 6},
-		            {7, 8, 9, 10, 11, 12},
-		            {13, 14, 15, 16, 17, 18},
-		            {19, 20, 21, 22, 23, 24}
-		        };
 
-		int columnasBase = matriz[0].length;
-		int filasBase = matriz.length;
+		int columnasBase = entrada[0].length;
+		int filasBase = entrada.length;
 
-
-		System.out.println("columna: "+columnasBase);
-		System.out.println("fila: "+filasBase);
-
-		int[] areglo = new int[columnasBase*filasBase];
+		String[] areglo = new String[columnasBase*filasBase];
 		int position = 0;
 
 		Map<String, String> mapMatriz = new HashMap<>();
 		
-		/*
-		for(){
-			
+		Integer fila = 0;
+		for(String[] entradaFilas: entrada) {
+			Integer columna = 0;
+			for(String entradaColumnas: entradaFilas) {
+				mapMatriz.put(fila+"-"+columna, entradaColumnas);
+				columna++;
+		    }
+			fila++;
 		}
-*/
 		
-		for (int i = 0; i < areglo.length; i++) {
-			System.out.println(areglo[i]); // Imprime cada valor
-		}
+		Map<String, String> mapMatrizReal = new HashMap<>();
+		
+		
+		int f = entrada.length;  //4
+		int c = entrada[0].length; //6
+		
+		System.out.println(f);
+		System.out.println(c);
+		
+		int filaMain = 0;
 
+			for(int j = 0; j < c; j++) {
+				areglo[position] = entrada[filaMain][j];
+				position++;
+			}
+			
+			filaMain++;
+			
+			for(;filaMain < f; filaMain++) {
+				areglo[position] = entrada[filaMain][c-1];
+				position++;
+			}
+			
+	        for (int i = 0; i < areglo.length; i++) {
+	            System.out.println(areglo[i]); // Imprime cada valor
+	        }
+		
+
+		
 		return null;
 	}
 
