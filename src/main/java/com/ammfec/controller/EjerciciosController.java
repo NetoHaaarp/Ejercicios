@@ -23,7 +23,7 @@ public class EjerciciosController {
 	}
 	
 	@PostMapping(value = "/matriz", produces={MediaType.APPLICATION_JSON_VALUE})
-	public List<String> matriz(@RequestBody String[][] data) {
+	public String[] matriz(@RequestBody String[][] data) {
 		return service.matriz(data);
 	}
 

@@ -11,14 +11,7 @@ import org.springframework.stereotype.Service;
 public class EjeciciosServiceImp implements EjeciciosService {
 
 	@Override
-	public List<String> permutaciones(String[] entrada) {
-		List<String> permutations = new ArrayList<>();
-		permutando(entrada, 0, permutations);
-		return permutations;
-	}
-
-	@Override
-	public List<String> matriz(String[][] entrada) {
+	public String[] matriz(String[][] entrada) {
 
 		int columnasBase = entrada[0].length;
 		int filasBase = entrada.length;
@@ -38,36 +31,61 @@ public class EjeciciosServiceImp implements EjeciciosService {
 			fila++;
 		}
 		
-		Map<String, String> mapMatrizReal = new HashMap<>();
-		
-		
 		int f = entrada.length;  //4
 		int c = entrada[0].length; //6
 		
-		System.out.println(f);
-		System.out.println(c);
-		
 		int filaMain = 0;
+		int fila2 = 0;
+		int incremento = 0;
+		
+		while (mapMatriz.size() > 0) {
 
-			for(int j = 0; j < c; j++) {
-				areglo[position] = entrada[filaMain][j];
-				position++;
+			for (int j = incremento; j < c; j++) {
+				if (mapMatriz.size() > 0) {
+					areglo[position] = entrada[filaMain][j];
+					position++;
+					mapMatriz.remove(filaMain + "-" + j);
+				}
 			}
-			
+
 			filaMain++;
-			
-			for(;filaMain < f; filaMain++) {
-				areglo[position] = entrada[filaMain][c-1];
-				position++;
-			}
-			
-	        for (int i = 0; i < areglo.length; i++) {
-	            System.out.println(areglo[i]); // Imprime cada valor
-	        }
-		
 
+			for (; filaMain < f; filaMain++) {
+				if (mapMatriz.size() > 0) {
+					areglo[position] = entrada[filaMain][c - 1];
+					position++;
+					mapMatriz.remove(filaMain + "-" + (c - 1));
+				}
+			}
+
+			filaMain--;
+
+			for (int j = c - 2; j >= 0; j--) {
+				if (mapMatriz.size() > 0) {
+					areglo[position] = entrada[filaMain][j];
+					position++;
+					mapMatriz.remove(filaMain + "-" + j);
+				}
+			}
+
+			filaMain--;
+
+			for (; filaMain > fila2; filaMain--) {
+				if (mapMatriz.size() > 0) {
+					areglo[position] = entrada[filaMain][fila2];
+					position++;
+					mapMatriz.remove(filaMain + "-" + fila2);
+				}
+			}
+
+			f--;
+			c--;
+			filaMain++;
+			fila2++;
+			incremento++;
+		}
 		
-		return null;
+		return areglo;
 	}
 
 	@Override
@@ -134,6 +152,13 @@ public class EjeciciosServiceImp implements EjeciciosService {
 		}
 		
 		return "valido";
+	}
+	
+	@Override
+	public List<String> permutaciones(String[] entrada) {
+		List<String> permutations = new ArrayList<>();
+		permutando(entrada, 0, permutations);
+		return permutations;
 	}
 
 	public void permutando(String[] entrada, Integer comienzo, List<String> permutations) {
