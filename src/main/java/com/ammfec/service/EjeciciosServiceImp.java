@@ -13,10 +13,10 @@ public class EjeciciosServiceImp implements EjeciciosService {
 	@Override
 	public String[] matriz(String[][] entrada) {
 
-		int columnasBase = entrada[0].length;
-		int filasBase = entrada.length;
+		int c = entrada[0].length;
+		int f= entrada.length;
 
-		String[] areglo = new String[columnasBase*filasBase];
+		String[] areglo = new String[c*f];
 		int position = 0;
 
 		Map<String, String> mapMatriz = new HashMap<>();
@@ -30,9 +30,6 @@ public class EjeciciosServiceImp implements EjeciciosService {
 		    }
 			fila++;
 		}
-		
-		int f = entrada.length;  //4
-		int c = entrada[0].length; //6
 		
 		int filaMain = 0;
 		int fila2 = 0;
