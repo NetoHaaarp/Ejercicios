@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.ammfec.service.EjeciciosService;
+import com.ammfec.service.MatrizService;
+import com.ammfec.service.PermutationService;
+import com.ammfec.service.SodocuService;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +21,14 @@ import java.util.List;
 class EjerciciosApplicationTests {
 	
 	@Autowired
-	private EjeciciosService service;
+	private MatrizService matrizService;
+	
+	@Autowired
+	private PermutationService permutationService;
+	
+	@Autowired
+	private SodocuService sodocuService;
+	
 
 	@Test
 	public void matrizSucces() {
@@ -31,7 +40,7 @@ class EjerciciosApplicationTests {
                 {"19", "20", "21", "22", "23", "24"}
             };
 		
-		String[] data= service.matriz(matriz);
+		String[] data= matrizService.matriz(matriz);
 		
 		assertTrue(data instanceof String[]);
 		
@@ -42,7 +51,7 @@ class EjerciciosApplicationTests {
 		
 		String[][] data = null;
 
-		assertNull(service.matriz(data));
+		assertNull(matrizService.matriz(data));
 		
 	}
 
@@ -61,7 +70,7 @@ class EjerciciosApplicationTests {
 				{ 3, 4, 5, 2, 8, 6, 1, 7, 9 }
 		};
 
-		assertTrue(service.sodocu(matriz).equals("invalido"));
+		assertTrue(sodocuService.sodocu(matriz).equals("invalido"));
 		
 	}
 
@@ -80,7 +89,7 @@ class EjerciciosApplicationTests {
 
 		};
 
-		assertTrue(service.sodocu(matriz).equals("invalido"));
+		assertTrue(sodocuService.sodocu(matriz).equals("invalido"));
 		
 	}
 	
@@ -89,7 +98,7 @@ class EjerciciosApplicationTests {
 	public void permutaSucces() {
 		
 		String[] entrada = new String[]{"a","b","c"};	
-		assertTrue(service.permutaciones(entrada) instanceof List<String>);
+		assertTrue(permutationService.permutaciones(entrada) instanceof List<String>);
 		
 	}
 	
@@ -97,7 +106,7 @@ class EjerciciosApplicationTests {
 	public void permutaError() {
 		
 		String[] entrada = null;	
-		assertNull(service.permutaciones(entrada));
+		assertNull(permutationService.permutaciones(entrada));
 		
 	}
 
