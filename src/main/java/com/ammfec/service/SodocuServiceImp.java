@@ -49,14 +49,14 @@ public class SodocuServiceImp implements SodocuService {
 	    
 		while (m <= 2) {
 			while (p <= 2) {
+				Map<Integer, Integer> cuadro = new HashMap<>();
 				for (Integer i = h; i <= j; i++) {
-					Map<Integer, Integer> cuadro = new HashMap<>();
 					for (Integer a = g; a <= c; a++) {
-						 cuadro.put(entrada[i][j], 1);
+						 cuadro.put(entrada[i][a], 1);
 					}
-					if(cuadro.size() != 9) {
-						return "invalido"; 
-					}
+				}
+				if(cuadro.size() != 9) {
+					return "invalido"; 
 				}
 				c = c + 3;
 				g = g + 3;

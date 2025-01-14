@@ -28,7 +28,6 @@ class EjerciciosApplicationTests {
 	
 	@Autowired
 	private SodocuService sodocuService;
-	
 
 	@Test
 	public void matrizSucces() {
@@ -70,7 +69,7 @@ class EjerciciosApplicationTests {
 				{ 3, 4, 5, 2, 8, 6, 1, 7, 9 }
 		};
 
-		assertTrue(sodocuService.sodocu(matriz).equals("invalido"));
+		assertTrue(sodocuService.sodocu(matriz).equals("valido"));
 		
 	}
 
