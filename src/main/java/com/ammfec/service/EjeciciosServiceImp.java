@@ -12,6 +12,11 @@ public class EjeciciosServiceImp implements EjeciciosService {
 
 	@Override
 	public String[] matriz(String[][] entrada) {
+		
+		if(entrada == null || entrada[0].length == 0 || entrada.length == 0) {
+			String[] response = null;
+			return response;
+		}
 
 		int c = entrada[0].length;
 		int f= entrada.length;
@@ -91,7 +96,7 @@ public class EjeciciosServiceImp implements EjeciciosService {
 		int columnasBase = entrada[0].length;
 		int filasBase = entrada.length;
 		
-		if(columnasBase != 9 && filasBase != 9) {
+		if(entrada ==  null || columnasBase != 9 || filasBase != 9) {
 			return "invalido"; 
 		}
 		
@@ -154,6 +159,9 @@ public class EjeciciosServiceImp implements EjeciciosService {
 	@Override
 	public List<String> permutaciones(String[] entrada) {
 		List<String> permutations = new ArrayList<>();
+		if(entrada == null || entrada.length == 0) {
+			return null;
+		}
 		permutando(entrada, 0, permutations);
 		return permutations;
 	}
